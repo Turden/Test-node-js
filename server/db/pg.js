@@ -9,7 +9,7 @@ function query(req) {
     console.log(req);
 
     let db = client.query(req);
-    if (req === "SELECT * FROM weather")
+    if (req === "SELECT * FROM users")
     {
         db.on("row", function (row, result) {
             result.addRow(row);

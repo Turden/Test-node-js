@@ -3,27 +3,28 @@ const squel = require('squel');
 class showSql{
     insert(req){
       return squel.insert()
-          .into("weather")
+          .into("users")
           .setFieldsRows([
-              {city:req.city,temp_lo:req.temp_lo,temp_hi:req.temp_hi,date:req.date}
+              {login:req.login,password:req.password/*,created:,updated:Date()*/}
           ])
           .toString();
     };
     select(){
       return squel.select()
-          .from("weather")
+          .from("users")
           .toString();
     };
     delete(){
         return squel.delete()
-            .from("weather")
+            .from("users")
             .toString();
     };
     update(req){
         return squel.update()
-            .table("weather")
-            .set("city",req.city)
-            .where("date = ?",req.date)
+            .table("users")
+            .set("password",req.password)
+            .set("updated",Date.now())
+            .where("login = ?",req.login)
             .toString();
     }
 }
