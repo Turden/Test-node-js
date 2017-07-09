@@ -1,11 +1,12 @@
 const squel = require('squel');
+const date = require('./date');
 
 class showSql{
     insert(req){
       return squel.insert()
           .into("users")
           .setFieldsRows([
-              {login:req.login,password:req.password/*,created:,updated:Date()*/}
+              {login:req.login,password:req.password,created:date,updated:date}
           ])
           .toString();
     };
@@ -14,16 +15,17 @@ class showSql{
           .from("users")
           .toString();
     };
-    delete(){
+    delete(req){
         return squel.delete()
             .from("users")
+            .where("login = ?",req.login)
             .toString();
     };
     update(req){
         return squel.update()
             .table("users")
             .set("password",req.password)
-            .set("updated",Date.now())
+            .set("updated",date)
             .where("login = ?",req.login)
             .toString();
     }

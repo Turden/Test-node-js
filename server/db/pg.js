@@ -4,10 +4,10 @@ const conString = "pg://postgres:1234@localhost:5432/test";
 const client = new pg.Client(conString);
 client.connect();
 
-function query(req) {
+
+function query(req,res) {
 
     console.log(req);
-
     let db = client.query(req);
     if (req === "SELECT * FROM users")
     {

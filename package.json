@@ -5,10 +5,12 @@
     "main": "node server/main.js"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "~1.17.2",
     "express": "~4.15.3",
     "nconf": "^0.8.4",
     "pg": "^6.4.0",
+    "pg-promise": "^6.3.1",
     "squel": "^5.10.0"
   }
 }
