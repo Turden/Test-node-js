@@ -24,4 +24,3 @@ $ npm i
 ```
 $ npm run main
 ```
-Open browser at http://localhost:3000/
