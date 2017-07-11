@@ -1,34 +1,39 @@
 'use strict';
-
+let promise = (a,b) => new Promise((result,reject)=>{
+    if (isNaN(a) || isNaN(b)) {
+        reject(new Error('a & b not a number'));
+    } else {
+        result([a, b])
+    }
+});
 class Mathematic {
     sum(req){
-        let a = +req.a;
-        let b = +req.b;
-        let c = a + b;
-        return 'a+b= '+ c;
+        promise(+req.a,+req.b)
+            .then(result=>result[0]+result[1])
+            .then(result=>console.log("%s + %s = %s",req.a,req.b,result))
+            .catch(err=>{throw new Error(err)});
+        return "OK"
     };
     min(req){
-        let a = +req.a;
-        let b = +req.b;
-        let c = a - b;
-        return 'a-b= '+ c;
+        promise(+req.a,+req.b)
+            .then(result=>result[0]-result[1])
+            .then(result=>console.log("%s - %s = %s",req.a,req.b,result))
+            .catch(err=>{throw new Error(err)});
+        return "OK"
     };
     mul(req){
-        let a = +req.a;
-        let b = +req.b;
-        let c = a + b;
-        return 'a*b= '+ c;
+        promise(+req.a,+req.b)
+            .then(result=>result[0]*result[1])
+            .then(result=>console.log("%s * %s = %s",req.a,req.b,result))
+            .catch(err=>{throw new Error(err)});
+        return "OK"
     };
     div(req){
-        let a = +req.a;
-        let b = +req.b;
-        if (b === 0)
-        {
-            return ('b must be != 0');
-        }else {
-            let c = a/b;
-            return ('a/b= '+ c);
-        };
+        promise(+req.a,+req.b)
+            .then(result=>result[0]/result[1])
+            .then(result=>console.log("%s / %s = %s",req.a,req.b,result))
+            .catch(err=>{throw new Error(err)});
+        return "OK"
     };
 }
 
